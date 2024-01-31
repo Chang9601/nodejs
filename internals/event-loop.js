@@ -2,12 +2,12 @@
 
 // NodeJS 애플리케이션을 시작한다(node app.js).
 
-// Node는 JavaScript 코드에서 3개의 확인 사항에 해당하는 작업이나 타이머를 자동으로 감지한다.
+// NodeJS는 JavaScript 코드에서 3개의 확인 사항에 해당하는 작업이나 타이머를 자동으로 감지한다.
 // 자동 감지는 app.js를 처음 실행하는 동안에도 발생한다. 따라서, 밑의 배열들은 프로그램을 시작하는 즉시 생성된다.
 // 배열들은 타이머를 호출하거나 서버를 시작하거나 파일 시스템 모듈을 사용할 때마다 요소가 추가된다.
 const pendingTimers = [];
-const pendingOSTasks = [];
-const pendingOperations = [];
+const pendingOsTasks = [];
+const pendingLongRunningOperations = [];
 
 // 의사코드
 // NodeJS가 시작할 때 이벤트 루프가 즉시 실행되지 않는다. 대신 NodeJS는 파일(app.js)의 내용을 가져와서 실행한다.
@@ -22,7 +22,9 @@ function checkLoopCondition() {
   // 3번째 확인: 대기 중인 긴 실행 중인 작업이 있는지 확인한다(e.g., 파일 시스템.).
 
   return (
-    pendingTimers.length || pendingOSTasks.length || pendingOperations.length
+    pendingTimers.length ||
+    pendingOsTasks.length ||
+    pendingLongRunningOperations.length
   );
 }
 
@@ -35,8 +37,8 @@ while (checkLoopCondition()) {
   //   - 새로운 대기 중인 운영 체제 작업이 완료될 때
   //   - 새로운 대기 중인 긴 실행 작업이 완료될 때
   //   - 타이머가 완료되기 직전일 때
-  // 4. Node는 대기 중인 타이머(setImmediate())를 살펴보고 타이머가 만료되었다면 콜백함수를 호출한다.
-  // 5. Node는 close 이벤트를 처리한다.
+  // 4. NodeJS는 대기 중인 타이머(setImmediate())를 살펴보고 타이머가 만료되었다면 콜백함수를 호출한다.
+  // 5. NodeJS는 close 이벤트를 처리한다.
 }
 
 // 터미널로 돌아가기
