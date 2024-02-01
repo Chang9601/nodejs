@@ -1,7 +1,7 @@
 {
-  "name": "performance",
+  "name": "cluster",
   "version": "1.0.0",
-  "description": "NodeJS 성능을 향상시키는 방법(클러스터, 스레드)을 공부한다.",
+  "description": "NodeJS 성능을 향상시키는 클러스터를 스레드)을 공부한다.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
