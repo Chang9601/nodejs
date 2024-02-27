@@ -1,5 +1,5 @@
 // require() 함수로 가져오기(CommonJS 모듈).
-const { add, sub, mul, div } = require("./math");
+const { add, sub } = require('./math');
 
 // NodeJS가 사용하는 모듈 시스템인 CommonJS에서 하나의 파일은 하나의 모듈이다.
 // 내부적으로 NodeJS는 모듈을 다음과 같은 함수로 감싼다.
@@ -7,9 +7,10 @@ const { add, sub, mul, div } = require("./math");
 //   코드
 // })
 // 덕분에 최상위 레벨 변수들은 모듈에 지역적으로 적용되어 전체 프로젝트 전역에서 사용되지 않는다.
-console.log("잠~");
+console.log('잠~');
 
 console.log(add(1, 2));
+console.log(sub(1, 1));
 
 // NodeJS는 모듈을 감싸는 함수를 호출할 때 this 예약어가 exports 객체를 참조하도록 한다.
 console.log(this === module.exports); // true
