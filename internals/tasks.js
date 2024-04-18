@@ -11,7 +11,7 @@ const sendRequest = () => {
     .request('https://www.naver.com', (res) => {
       res.on('data', () => {});
       res.on('end', () => {
-        console.log(`network: ${Date.now() - start}`);
+        console.log(`네트워크: ${Date.now() - start}`);
       });
     })
     .end();
@@ -19,14 +19,14 @@ const sendRequest = () => {
 
 function computeHash() {
   crypto.pbkdf2('a', 'b', 100000, 512, 'sha512', () => {
-    console.log(`hash: ${Date.now() - start}`);
+    console.log(`해시: ${Date.now() - start}`);
   });
 }
 
 sendRequest();
 
 fs.readFile('tasks.js', 'utf8', () => {
-  console.log(`filesystem: ${Date.now() - start}`);
+  console.log(`파일 시스템: ${Date.now() - start}`);
 });
 
 computeHash();
@@ -34,10 +34,10 @@ computeHash();
 computeHash();
 computeHash();
 
-// 로그가 출력되는 순서는?
-// network: 135
-// hash: 1352
-// filesystem: 1353
-// hash: 1389
-// hash: 1399
-// hash: 1424
+// 로그가 출력되는 순서.
+// 네트워크: 135
+// 해시: 1352
+// 파일 시스템: 1353
+// 해시: 1389
+// 해시: 1399
+// 해시: 1424
